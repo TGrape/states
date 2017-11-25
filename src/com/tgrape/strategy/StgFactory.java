@@ -25,7 +25,7 @@ public class StgFactory {
 		}else if(scode.compareTo("6LY")==0){
 			logger.info("----六连阳策略");
 			sp = new SixSzStrategy();
-		}else if(scode.equalsIgnoreCase("BuyPoint")){
+		}else if(scode.equalsIgnoreCase("BuyPnt")){
 			logger.info("----超级买点策略");
 			sp = new BuyPointStrategy();
 		}

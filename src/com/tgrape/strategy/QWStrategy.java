@@ -6,17 +6,31 @@ public class QWStrategy extends SProperty {
 
 	@Override
 	public boolean hit(List<MarketDayProperty> mdplist) {
-		if(mdplist.size()<54)
+		if(mdplist.size()<30)
 			return false;
 		if(this.turnover6(mdplist)<3)
 			return false;
-		if(!this.lowest3(mdplist) ){
+		if(!this.lowest(3,mdplist) ){
 			return false;
 		}
 		if(this.shangying(mdplist))
 			return false;
+		if(this.yinxian(3,mdplist)){
+			return false;
+		}
+		if(this.lowest(18,mdplist))
+			return false;
 		if(!this.qw(mdplist))
 			return false;
+		
+		return true;
+	}
+
+	private boolean yinxian(int num,List<MarketDayProperty> mdplist) {
+		for(int i=1;i<num+1&&i<mdplist.size();i++){
+			if(mdplist.get(i).P_END>mdplist.get(i).P_START)
+				return false;
+		}
 		return true;
 	}
 
@@ -26,12 +40,14 @@ public class QWStrategy extends SProperty {
 	 * @return
 	 */
 	private boolean shangying(List<MarketDayProperty> mdplist) {
-		float high = mdplist.get(0).P_HIGH;
-		float low = mdplist.get(0).P_END;
-		if(mdplist.get(0).P_START < low)
-			low = mdplist.get(0).P_START;
-		if(high>(mdplist.get(0).P_START*0.04+low))
-			return true;
+		for(int i=0;i<3&&i<mdplist.size();i++){
+			float high = mdplist.get(i).P_HIGH;
+			float low = mdplist.get(i).P_END;
+			if(mdplist.get(i).P_START < low)
+				low = mdplist.get(i).P_START;
+			if(high>(mdplist.get(i).P_START*0.035+low))
+				return true;
+		}
 		return false;
 	}
 	private boolean qw(List<MarketDayProperty> mdplist) {
@@ -47,10 +63,10 @@ public class QWStrategy extends SProperty {
 		return true;
 	}
 
-	private boolean lowest3(List<MarketDayProperty> mdplist) {
+	private boolean lowest(int num,List<MarketDayProperty> mdplist) {
 		float p0 = mdplist.get(0).P_LOW;
-		for(int i=1;i<3;i++){
-			if(p0>mdplist.get(i).P_LOW){
+		for(int i=1;i<num+1&&i<mdplist.size();i++){
+			if(p0>mdplist.get(i).P_START){
 				return false;
 			}
 		}

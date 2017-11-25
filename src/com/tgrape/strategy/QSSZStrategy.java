@@ -15,11 +15,25 @@ public class QSSZStrategy extends SProperty {
 		if(shangying(mdplist)){
 			return false;
 		}
+		if(lowest(3,mdplist)){
+			return false;
+		}
+		if(bigyinxian(mdplist)){
+			return false;
+		}
 		if(this.qssz3(mdplist)){
 			return true;
 		}
 		if(this.qssz6(mdplist)){
 			return true;
+		}
+		return false;
+	}
+	private boolean bigyinxian(List<MarketDayProperty> mdplist) {
+		for(int i=0;i<18&&i<mdplist.size();i++){
+			if(mdplist.get(i).P_START*0.92>mdplist.get(i).P_END){
+				return true;
+			}
 		}
 		return false;
 	}
@@ -36,6 +50,15 @@ public class QSSZStrategy extends SProperty {
 		if(high>(mdplist.get(0).P_START*0.03+low))
 			return true;
 		return false;
+	}
+	private boolean lowest(int num,List<MarketDayProperty> mdplist) {
+		float p0e = mdplist.get(0).P_END;
+		for(int i=1;i<num+1&&i<mdplist.size();i++){
+			if(p0e>mdplist.get(i).P_START){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**

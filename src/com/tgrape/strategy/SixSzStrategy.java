@@ -6,18 +6,35 @@ public class SixSzStrategy extends SProperty {
 
 	@Override
 	public boolean hit(List<MarketDayProperty> mdplist) {
-		if(mdplist.size()<54)
+		if(mdplist.size()<30)
 			return false;
 		float hs = huanshou6(mdplist);
 		if(hs>30)
 			return false;
-		hs = huanshou3(mdplist);
-		if(hs>12)
+		
+		if(max(30,mdplist))
 			return false;
+		
 		if(!this.sixLY(mdplist))
 			return false;
 		
 		
+		return true;
+	}
+
+	private boolean max(int num, List<MarketDayProperty> mdplist) {
+		float max = mdplist.get(0).P_HIGH;
+		for(int i=0;i<num+1&&i<mdplist.size();i++){
+			if(i<3){
+				if( mdplist.get(i).P_HIGH>max){
+					max = mdplist.get(i).P_HIGH;
+				}
+			}else{
+				if(mdplist.get(i).P_END>max)
+					return false;
+			}
+				
+		}
 		return true;
 	}
 
