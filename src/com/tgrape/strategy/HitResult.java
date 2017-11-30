@@ -10,7 +10,7 @@ public class HitResult {
 
 	
 	public String insert() {
-		String isql = "insert into T_STG_REC values("
+		String isql = "insert into T_STG_REC(STGCODE,STKCODE,TURNOVER3,TURNOVER6,CREATE_DATE) values("
 				+ "'"+STGCODE+"','"+STKCODE+"',"+TURNOVER3+","+TURNOVER6+",sysdate)";
 		return isql;
 	}

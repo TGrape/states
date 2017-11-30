@@ -37,29 +37,8 @@ public class QSSZStrategy extends SProperty {
 		}
 		return false;
 	}
-	/**
-	 * 上影线
-	 * @param mdplist
-	 * @return
-	 */
-	private boolean shangying(List<MarketDayProperty> mdplist) {
-		float high = mdplist.get(0).P_HIGH;
-		float low = mdplist.get(0).P_END;
-		if(mdplist.get(0).P_START < low)
-			low = mdplist.get(0).P_START;
-		if(high>(mdplist.get(0).P_START*0.03+low))
-			return true;
-		return false;
-	}
-	private boolean lowest(int num,List<MarketDayProperty> mdplist) {
-		float p0e = mdplist.get(0).P_END;
-		for(int i=1;i<num+1&&i<mdplist.size();i++){
-			if(p0e>mdplist.get(i).P_START){
-				return false;
-			}
-		}
-		return true;
-	}
+	
+	
 
 	/**
 	 * 强势上涨3天

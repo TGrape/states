@@ -12,26 +12,15 @@ public class TP18Strategy extends SProperty {
 			return false;
 		if(this.shangying(mdplist))
 			return false;
+		if(this.lowest(15,mdplist))
+			return false;
 		if(!this.tp18(mdplist) ){
 			return false;
 		}
 		
 		return true;
 	}
-	/**
-	 * …œ”∞œﬂ
-	 * @param mdplist
-	 * @return
-	 */
-	private boolean shangying(List<MarketDayProperty> mdplist) {
-		float high = mdplist.get(0).P_HIGH;
-		float low = mdplist.get(0).P_END;
-		if(mdplist.get(0).P_START < low)
-			low = mdplist.get(0).P_START;
-		if(high>(mdplist.get(0).P_START*0.03+low))
-			return true;
-		return false;
-	}
+
 
 	private boolean tp18(List<MarketDayProperty> mdplist) {
 		float max6 = 0;

@@ -9,5 +9,6 @@ public class MarketDayProperty {
 	public float P_END;
 	public float DAY_VOLUMN;
 	public float TURN_OVER;
+	public int hit = 0;
 
 }

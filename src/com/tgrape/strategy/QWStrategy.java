@@ -34,22 +34,7 @@ public class QWStrategy extends SProperty {
 		return true;
 	}
 
-	/**
-	 * …œ”∞œﬂ
-	 * @param mdplist
-	 * @return
-	 */
-	private boolean shangying(List<MarketDayProperty> mdplist) {
-		for(int i=0;i<3&&i<mdplist.size();i++){
-			float high = mdplist.get(i).P_HIGH;
-			float low = mdplist.get(i).P_END;
-			if(mdplist.get(i).P_START < low)
-				low = mdplist.get(i).P_START;
-			if(high>(mdplist.get(i).P_START*0.035+low))
-				return true;
-		}
-		return false;
-	}
+	
 	private boolean qw(List<MarketDayProperty> mdplist) {
 		float xy = mdplist.get(0).P_END;
 		if(mdplist.get(0).P_END>mdplist.get(0).P_START)
@@ -63,16 +48,7 @@ public class QWStrategy extends SProperty {
 		return true;
 	}
 
-	private boolean lowest(int num,List<MarketDayProperty> mdplist) {
-		float p0 = mdplist.get(0).P_LOW;
-		for(int i=1;i<num+1&&i<mdplist.size();i++){
-			if(p0>mdplist.get(i).P_START){
-				return false;
-			}
-		}
-		return true;
-	}
-
+	
 	private float turnover6(List<MarketDayProperty> mdplist) {
 		float t6 = 0;
 		for(int i=0;i<6;i++)

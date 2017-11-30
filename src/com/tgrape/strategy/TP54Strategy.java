@@ -11,6 +11,8 @@ public class TP54Strategy extends SProperty {
 		
 		if(this.shangying(mdplist))
 			return false;
+		if(this.lowest(12,mdplist))
+			return false;
 		if(!this.tp54(mdplist) ){
 			return false;
 		}
@@ -18,20 +20,8 @@ public class TP54Strategy extends SProperty {
 		return true;
 	}
 
-	/**
-	 * …œ”∞œﬂ
-	 * @param mdplist
-	 * @return
-	 */
-	private boolean shangying(List<MarketDayProperty> mdplist) {
-		float high = mdplist.get(0).P_HIGH;
-		float low = mdplist.get(0).P_END;
-		if(mdplist.get(0).P_START < low)
-			low = mdplist.get(0).P_START;
-		if(high>(mdplist.get(0).P_START*0.03+low))
-			return true;
-		return false;
-	}
+	
+	
 	private boolean tp54(List<MarketDayProperty> mdplist) {
 		float max8 = mdplist.get(0).P_HIGH;
 		for(int i=1;i<8;i++){

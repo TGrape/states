@@ -9,9 +9,18 @@ public class BuyPointStrategy extends SProperty {
 		if(mdplist.size()<54)
 			return false;
 	
-		if(!this.tp54(mdplist) ){
+		if(!this.tp30(mdplist) ){
 			return false;
 		}
+		if(this.lowest(12,mdplist))
+			return false;
+		if(mdplist.get(0).P_HIGH>70)
+			return false;
+		if(shangying(mdplist)){
+			return false;
+		}
+		if(max(18,mdplist))
+			return false;
 		if(!tiaozheng10(mdplist)){
 			return false;
 		}
@@ -26,21 +35,22 @@ public class BuyPointStrategy extends SProperty {
 			if(mdplist.get(i).P_LOW<min6)
 				min6 = mdplist.get(i).P_LOW;
 		}
-		if(min6<max6*0.9)
+		if(min6<max6*0.94 && min6>max6*0.7)
 			return true;
+		
 		return false;
 	}
 
 
 	
-	private boolean tp54(List<MarketDayProperty> mdplist) {
-		float max8 = 0;
-		for(int i=1;i<8;i++){
+	private boolean tp30(List<MarketDayProperty> mdplist) {
+		float max8 = mdplist.get(0).P_HIGH;
+		for(int i=1;i<5;i++){
 			if(mdplist.get(i).P_HIGH>max8)
 				max8 = mdplist.get(i).P_HIGH;
 		}
 		float max54 = 0;
-		for(int i=8;i<60&&mdplist.size()>60;i++){
+		for(int i=5;i<34&&i<mdplist.size();i++){
 			if(mdplist.get(i).P_HIGH>max54)
 				max54 = mdplist.get(i).P_HIGH;
 		}

@@ -12,7 +12,7 @@ public class SixSzStrategy extends SProperty {
 		if(hs>30)
 			return false;
 		
-		if(max(30,mdplist))
+		if(max3(30,mdplist))
 			return false;
 		
 		if(!this.sixLY(mdplist))
@@ -22,7 +22,7 @@ public class SixSzStrategy extends SProperty {
 		return true;
 	}
 
-	private boolean max(int num, List<MarketDayProperty> mdplist) {
+	private boolean max3(int num, List<MarketDayProperty> mdplist) {
 		float max = mdplist.get(0).P_HIGH;
 		for(int i=0;i<num+1&&i<mdplist.size();i++){
 			if(i<3){
@@ -45,12 +45,7 @@ public class SixSzStrategy extends SProperty {
 		return hs;
 	}
 	
-	private float huanshou3(List<MarketDayProperty> mdplist) {
-		float hs = 0;
-		for(int i=0;i<3;i++)
-			hs += mdplist.get(i).TURN_OVER;
-		return hs;
-	}
+	
 
 	/**
 	 * ÁùÁ¬Ñô²ßÂÔ
