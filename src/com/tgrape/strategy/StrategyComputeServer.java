@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import com.tgrape.db.SqlExecutor;
 import com.tgrape.sync.ISync;
 
-public class StrategyComputeServer implements ISync{
+public class StrategyComputeServer implements ISync,Runnable{
 	private static Logger logger = LogManager.getLogger(StrategyComputeServer.class);
 
 	public void hit(){
@@ -88,6 +88,12 @@ public class StrategyComputeServer implements ISync{
 	@Override
 	public void sync(String url) {
 		this.hit();
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 	 
 

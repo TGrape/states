@@ -16,6 +16,9 @@ public class TP54Strategy extends SProperty {
 		if(!this.tp54(mdplist) ){
 			return false;
 		}
+		if(!maxTurnover(30,mdplist)){
+			return false;
+		}
 		
 		return true;
 	}

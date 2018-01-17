@@ -17,6 +17,9 @@ public class TP18Strategy extends SProperty {
 		if(!this.tp18(mdplist) ){
 			return false;
 		}
+		if(!maxTurnover(18,mdplist)){
+			return false;
+		}
 		
 		return true;
 	}
@@ -43,7 +46,7 @@ public class TP18Strategy extends SProperty {
 		for(int i=0;i<3;i++){
 			sum += mdplist.get(i).TURN_OVER;
 		}
-		if(sum>30)
+		if(sum>10)
 			return true;
 		if(mdplist.get(0).P_END>=mdplist.get(1).P_END*1.09
 				|| mdplist.get(1).P_END>=mdplist.get(2).P_END*1.09) 

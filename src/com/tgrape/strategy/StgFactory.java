@@ -28,6 +28,9 @@ public class StgFactory {
 		}else if(scode.equalsIgnoreCase("BuyPnt")){
 			logger.info("----超级买点策略");
 			sp = new BuyPointStrategy();
+		}else if(scode.equalsIgnoreCase("FLTP")){
+			logger.info("----放量突破策略");
+			sp = new FLTPStrategy();
 		}
 	
 		return sp;

@@ -10,6 +10,19 @@ public abstract class SProperty {
 	
 	public abstract boolean hit(List<MarketDayProperty> mdplist) ;
 
+	protected boolean maxTurnover(int daynum,List<MarketDayProperty> mdplist){
+		float max5 = mdplist.get(0).TURN_OVER;
+		for(int i=1;i<5;i++){
+			if(max5<mdplist.get(i).TURN_OVER)
+				max5 = mdplist.get(i).TURN_OVER;
+		}
+		for(int i=5;i<mdplist.size()&&i<daynum;i++){
+			if(mdplist.get(i).TURN_OVER>max5)
+				return false;
+		}
+			
+		return true;
+	}
 	protected boolean lowest(int num,List<MarketDayProperty> mdplist) {
 		float p0 = mdplist.get(0).P_LOW;
 		for(int i=1;i<mdplist.size()&&i<3;i++)
